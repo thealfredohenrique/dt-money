@@ -12,6 +12,24 @@ const searchFormSchema = z.object({
 
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
+/**
+ * Why does a component render?
+ * - Hooks changed (changed state, context, reducer);
+ * - Props changed (changed props);
+ * - Parent rendered;
+ *
+ * What is the rendering flow?
+ * 1. React recreates the HTML of that component's interface;
+ * 2. Compare the recreated HTML version with the previous version;
+ * 3. IF changed something, it writes the HTML on the screen;
+ *
+ * Memo:
+ * 0. Hooks changed, Props changed (deep comparison);
+ * 0.1. Compare the previous version of hooks and props;
+ * 0.2. IF changed something, it will allow re-rendering;
+ *
+ */
+
 export function SearchForm() {
   const fetchTransactions = useContextSelector(TransactionsContext, (context) => {
     return context.fetchTransactions
